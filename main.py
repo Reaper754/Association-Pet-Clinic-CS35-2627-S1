@@ -10,7 +10,9 @@ select = """Choose your patient:
 1 for Max | 2 for Fluffy | 3 for Buck | 4 for exit\n"""
 
 message = """Enter an input: 
-| Checkup | Treat |\n"""
+| Checkup | Treat | Exit |\n"""
+
+recover = "How much health should be recovered"
 
 commands = [
     "checkup",
@@ -35,39 +37,39 @@ actions3 = [
 while True:
     try:
         patient = int(input(select))
-        print("type exit to exit.")
         if patient == 1:
             user_input = input(message).strip().lower()
-            for command, action in zip(commands, actions1):
-                if user_input == command:
-                    if command == "treat":
-                        action()
-                    action()
+            if user_input == "treat":
+                amount = int(input(recover))
+                vet.treat(dog, amount)
+            elif user_input == "checkup":
+                vet.checkup(dog)
+            else:
+                if user_input == "exit":
                     break
-                else:
-                    if user_input == "exit":
-                        break
-                    print("Invalid command.")
+                print("Invalid command.")
         elif patient == 2:
             user_input = input(message).strip().lower()
-            for command, action2 in zip(commands, actions2):
-                if user_input == command:
-                    action2(cat)
+            if user_input == "treat":
+                amount = int(input(recover))
+                vet.treat(cat, amount)
+            elif user_input == "checkup":
+                vet.checkup(cat)
+            else:
+                if user_input == "exit":
                     break
-                else:
-                    if user_input == "exit":
-                        break
-                    print("Invalid command.")
+                print("Invalid command.")
         elif patient == 3:
             user_input = input(message).strip().lower()
-            for command, action3 in zip(commands, actions3):
-                if user_input == command:
-                    action3(ferret)
+            if user_input == "treat":
+                amount = int(input(recover))
+                vet.treat(ferret, amount)
+            elif user_input == "checkup":
+                vet.checkup(ferret)
+            else:
+                if user_input  == "exit":
                     break
-                else:
-                    if user_input  == "exit":
-                        break
-                    print("Invalid command.")
+                print("Invalid command.")
         else:
             if patient == 4:
                 break
